@@ -1,0 +1,1 @@
+SELECT operating_name, regexp_replace(operating_name, '^.* ', '') from address_load

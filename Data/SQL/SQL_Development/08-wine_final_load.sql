@@ -1,0 +1,4 @@
+COPY wine_final(id,country,description,designation,points,price,province,region_1,region_2,taster_name,taster_twit,title,variety,winery,vintage,
+			 winery_up,permit_number,owner_name,operating_name,street,city,state,zip,county)
+FROM 'C:\Users\edwar\Desktop\Projects\Utterly_Uncreative\Data\csv\wine_final.csv' DELIMITER ',' CSV HEADER;
+
