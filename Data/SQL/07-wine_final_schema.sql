@@ -16,12 +16,15 @@ CREATE TABLE wine_final (
     winery text  ,
     vintage int  ,
     winery_up text,
-    permit_number text;	
     owner_name text,
+    permit_number text,
     operating_name text,
     street text, 
     city text,
     state text,
     zip text,
-    county text
+    county text,
+    latitude text,
+    longitude text,
+	merge_name text
 );
