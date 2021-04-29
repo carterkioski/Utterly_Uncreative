@@ -29,16 +29,15 @@ def home_page():
 @app.route('/all')
 def all_quotes():
     session = Session(engine)
-    wine_all = engine.execute("Select title, winery, street, zip from wine_final limit 100").fetchall()
-    #wine_all = engine.execute("Select Wine.title, Wine.winery, Wine.street, Wine.zip from Wine limit 100").fetchall()
+    wine_all = engine.execute("Select Wine.title, Wine.winery, Wine.latitude, Wine.longitude from Wine").fetchall()
     
     wine_list = []
     for items in wine_all:
         wine_dict = {}
         wine_dict['title']  = items[0]
         wine_dict['winery'] = items[1]  
-        wine_dict["street"] = items[2]
-        wine_dict["zip"]    = items[3]
+        wine_dict["latitude"] = items[2]
+        wine_dict["longitude"]    = items[3]
         wine_list.append(wine_dict)
     session.close()
     return (jsonify({'Wine': wine_list, 'Count': len(wine_list)}))
@@ -126,16 +125,25 @@ def tasters1(variety):
 @app.route('/price/<price>')
 def price1(price):
     session = Session(engine)
+    
+    price_low=str(round(int(price)*.90))
+    price_high=str(round(int(price)*1.10))
+    
+    print(price_low)
+    print(price)
+    print(price_high)
 
-    wines = engine.execute("select Wine.winery, Wine.title, Wine.price from Wine where Wine.price =\'"+price+"\'").fetchall()
-#    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"Aaron"\'").fetchall()
+    wines = engine.execute("select Wine.winery, Wine.title, Wine.variety, Wine.points, Wine.price from Wine where Wine.price<=\'"+price_high+"\'and Wine.price>=\'"+price_low+"\'").fetchall()
+
     
     wine_list = []
     for item in wines:
         wine_dict = {}
         wine_dict['Winery'] = item[0]
         wine_dict['Wine'] = item[1]
-        wine_dict['Price'] = item[2]
+        wine_dict['Variety'] = item[2]
+        wine_dict['Points'] = item[3]
+        wine_dict['Price'] = item[4]
 
         wine_list.append(wine_dict)
         
