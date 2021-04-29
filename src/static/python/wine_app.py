@@ -29,8 +29,8 @@ def home_page():
 @app.route('/all')
 def all_quotes():
     session = Session(engine)
-
-    wine_all = engine.execute("Select Wine.title, Wine.winery, Wine.street, Wine.zip from Wine limit 100").fetchall()
+    wine_all = engine.execute("Select title, winery, street, zip from wine_final limit 100").fetchall()
+    #wine_all = engine.execute("Select Wine.title, Wine.winery, Wine.street, Wine.zip from Wine limit 100").fetchall()
     
     wine_list = []
     for items in wine_all:
@@ -40,10 +40,10 @@ def all_quotes():
         wine_dict["street"] = items[2]
         wine_dict["zip"]    = items[3]
         wine_list.append(wine_dict)
-            
+    session.close()
     return (jsonify({'Wine': wine_list, 'Count': len(wine_list)}))
 
-    session.close()
+    
 
 @app.route('/variety/<variety>')
 def variety1(variety):
@@ -62,9 +62,9 @@ def variety1(variety):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
+    session.close()
     return (jsonify({'Variety': wine_list, 'Count': len(wine_list)}))
 
-    session.close()
 
 
 @app.route('/options/<variety>/<points>/<price>')
@@ -98,9 +98,9 @@ def options1(variety,points,price):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
-    return (jsonify({'Variety': wine_list, 'Count': len(wine_list)}))
-
     session.close()
+
+    return (jsonify({'Variety': wine_list, 'Count': len(wine_list)}))
 
 @app.route('/tasters/<variety>')
 def tasters1(variety):
@@ -119,10 +119,9 @@ def tasters1(variety):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
-    return (jsonify({'Tasters': wine_list, 'Count': len(wine_list)}))
-
     session.close()
 
+    return (jsonify({'Tasters': wine_list, 'Count': len(wine_list)}))
 
 @app.route('/price/<price>')
 def price1(price):
@@ -141,10 +140,9 @@ def price1(price):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
-    return (jsonify({'Vintages': wine_list, 'Count': len(wine_list)}))
-
     session.close()
 
+    return (jsonify({'Vintages': wine_list, 'Count': len(wine_list)}))
 
 
 @app.route('/vintage/<vintage>')
@@ -164,9 +162,9 @@ def vintage1(vintage):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
-    return (jsonify({'Vintages': wine_list, 'Count': len(wine_list)}))
-
     session.close()
+
+    return (jsonify({'Vintages': wine_list, 'Count': len(wine_list)}))
 
 @app.route('/winery/<winery>')
 def winery1(winery):
@@ -185,9 +183,8 @@ def winery1(winery):
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
-    return (jsonify({'wineries': wine_list, 'count': len(wine_list)}))
-
     session.close()
+    return (jsonify({'wineries': wine_list, 'count': len(wine_list)}))
 
 
 if __name__ == "__main__":
