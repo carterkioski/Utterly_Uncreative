@@ -15,9 +15,6 @@ connection = engine.connect()
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
-#Save reference to the tables
-# Wine = Base.classes.wine_final
-# Authors = Base.classes.author
 #creating an app
 app = Flask(__name__)
 
@@ -27,9 +24,9 @@ def home_page():
     return render_template('index.html')
 
 @app.route('/all')
-def all_quotes():
+def all():
     session = Session(engine)
-    wine_all = engine.execute("Select Wine.title, Wine.winery, Wine.latitude, Wine.longitude from Wine").fetchall()
+    wine_all = engine.execute("Select wine_final.title, wine_final.winery, wine_final.latitude, wine_final.longitude from wine_final").fetchall()
     
     wine_list = []
     for items in wine_all:
@@ -42,14 +39,32 @@ def all_quotes():
     session.close()
     return (jsonify({'Wine': wine_list, 'Count': len(wine_list)}))
 
-    
+@app.route('/variety_count')
+def variety_count():
+    session = Session(engine)
+    # wine_all = engine.execute("select Variety.variety, Variety.variety_count, Variety.winery_count, Variety.vintage_low, Variety.vintage_high from Variety").fetchall()
+    wine_all = engine.execute("select wine_count.variety, wine_count.variety_count, wine_count.winery_count, wine_count.vintage_low, wine_count.vintage_high from wine_count ").fetchall()
+
+    wine_list = []
+    for items in wine_all:
+        wine_dict = {}
+        wine_dict['variety']  = items[0]
+        wine_dict['variety_count'] = items[1]  
+        wine_dict["winery_count"] = items[2]
+        wine_dict["vintage_low"]    = items[3]
+        wine_dict["vintage_high"]    = items[4]
+        wine_list.append(wine_dict)
+    session.close()
+    return (jsonify({'Variety Count': wine_list, 'Count': len(wine_list)}))
+
+
 
 @app.route('/variety/<variety>')
 def variety1(variety):
     session = Session(engine)
 
 #    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.variety =\'"+variety+"\'").fetchall()
-    wines = engine.execute("select Wine.winery, Wine.title, Wine.variety from Wine where Wine.variety =\'"+variety+"\'").fetchall()
+    wines = engine.execute("select wine_final.winery, wine_final.title, wine_final.variety from wine_final where wine_final.variety =\'"+variety+"\'").fetchall()
     
     wine_list = []
     for item in wines:
@@ -83,7 +98,7 @@ def options1(variety,points,price):
     print(price)
     print(price_high)
 
-    wines = engine.execute("select Wine.winery, Wine.title, Wine.variety, Wine.points, Wine.price from Wine where Wine.variety =\'"+variety+"\' and Wine.points>=\'"+points_low+"\'and Wine.price<=\'"+price_high+"\'and Wine.price>=\'"+price_low+"\'").fetchall()
+    wines = engine.execute("select wine_final.winery, wine_final.title, wine_final.variety, wine_final.points, wine_final.price from wine_final where wine_final.variety =\'"+variety+"\' and wine_final.points>=\'"+points_low+"\'and wine_final.price<=\'"+price_high+"\'and wine_final.price>=\'"+price_low+"\'").fetchall()
 
     wine_list = []
     for item in wines:
@@ -105,7 +120,7 @@ def options1(variety,points,price):
 def tasters1(variety):
     session = Session(engine)
 
-    wines = engine.execute("select Wine.taster_name, Wine.title, Wine.variety from Wine where Wine.taster_name is not NULL and Wine.variety =\'"+variety+"\'").fetchall()
+    wines = engine.execute("select wine_final.taster_name, wine_final.title, wine_final.variety from wine_final where wine_final.taster_name is not NULL and wine_final.variety =\'"+variety+"\'").fetchall()
 #    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"Aaron"\'").fetchall()
     
     wine_list = []
@@ -133,7 +148,7 @@ def price1(price):
     print(price)
     print(price_high)
 
-    wines = engine.execute("select Wine.winery, Wine.title, Wine.variety, Wine.points, Wine.price from Wine where Wine.price<=\'"+price_high+"\'and Wine.price>=\'"+price_low+"\'").fetchall()
+    wines = engine.execute("select wine_final.winery, wine_final.title, wine_final.variety, wine_final.points, wine_final.price from wine_final where wine_final.price<=\'"+price_high+"\'and wine_final.price>=\'"+price_low+"\'").fetchall()
 
     
     wine_list = []
@@ -157,7 +172,7 @@ def price1(price):
 def vintage1(vintage):
     session = Session(engine)
 
-    wines = engine.execute("select Wine.winery, Wine.title, Wine.vintage from Wine where Wine.vintage =\'"+vintage+"\'").fetchall()
+    wines = engine.execute("select wine_final.winery, wine_final.title, wine_final.vintage from wine_final where wine_final.vintage =\'"+vintage+"\'").fetchall()
 #    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"Aaron"\'").fetchall()
     
     wine_list = []
@@ -178,7 +193,7 @@ def vintage1(vintage):
 def winery1(winery):
     session = Session(engine)
 
-    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"+winery+"\'").fetchall()
+    wines = engine.execute("select wine_final.winery, wine_final.title from wine_final where wine_final.winery =\'"+winery+"\'").fetchall()
 #    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"Aaron"\'").fetchall()
     
     wine_list = []
