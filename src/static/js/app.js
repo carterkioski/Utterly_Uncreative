@@ -46,6 +46,7 @@ function updateVisualizations(){
 }
 
 function findSimilarWines(marker){
+    var winery = marker.popup.options.className[0];
     function callWines(response){
         list = '<ol>'
         if (response.count >= 4){
@@ -72,11 +73,11 @@ function findSimilarWines(marker){
         <br>
         </div>
         `)*/
-        data = response.wineries.map( item => [item.Rating, item.Price])
+        data = response.wineries.map( item => [item.Rating, item.Price, item.Wine])
         var max = d3.max(data, function(array) {
             return d3.max(array);
           });
-        var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        var margin = {top: 50, right: 30, bottom: 30, left: 60},
             width = 460 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
         var svg =  d3.select('#otherWines')
@@ -111,6 +112,35 @@ function findSimilarWines(marker){
             .attr("y", -margin.left + 20)
             .attr("x", -margin.top - height/2 + 20)
             .text("Price")
+
+        //Adding title
+        svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top/10))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .text(`${winery}`);
+        
+        //setting d3 selection for div to add wine info on hover
+        var tooltip = d3.select("#otherWines")
+        .append("div")
+        .style("opacity", 1)
+        .attr("class", "tooltip")
+        var mouseover = function(d) {
+            tooltip 
+                .html(`<p><b>Wine:</b> ${d[2]} <br>
+                       <b>Price:</b>  $${d[1]}<br>
+                       <b>Rating:</b>  ${d[0]}/100</p>`)
+                .style("opacity", 1)
+        }
+    
+        // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+        var mouseleave = function(d) {
+        tooltip
+            .transition()
+            .duration(500)
+            .style("opacity", 0)
+        }
         // Add dots
         svg.append('g')
             .selectAll("dot")
@@ -122,25 +152,15 @@ function findSimilarWines(marker){
             .attr("r", 5)
             .style("fill", function(d){
                 if (d[0] === marker.popup.options.className[1] && d[1] === marker.popup.options.className[2]){
-                    return "#000000"
+                    return "#722F37"
                 }
                 else{
-                    return "#69b3a2"
+                    return "#000000"
                 }})
-        /*svg.append('g')
-            .selectAll("dot")
-            .data([80,80])
-            .enter()
-            .append("circle")
-            .attr("cx", function (d) { return x(d[0]); } )
-            .attr("cy", function (d) { return y(d[1]); } )
-            .attr("r", 5)
-            .style("fill", "#000000")
-            console.log(marker.popup.options.className.slice(1,3)[0])
-            console.log(marker.popup.options.className.slice(1,3)[1])
-            */
+            .on("mouseover", mouseover )
+            .on("mouseleave", mouseleave )
+
     }
-    var winery = marker.popup.options.className[0];
     //this url will be replaced with Heroku one
     d3.json(`http://127.0.0.1:5000/winery/${winery}`).then(callWines)
 }
