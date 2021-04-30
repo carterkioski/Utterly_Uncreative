@@ -14,6 +14,55 @@
     accessToken: API_KEY
   }).addTo(map);
 
+function createGraph(wineType){
+    d3.select('#lineGraph').html('')
+    console.log(wineType)
+    traces = []
+    function getVarities(item) {
+        console.log(item)
+        function callApi(response){
+            trace = {
+                x: [],
+                y: [],
+                type: 'line',
+                mode: 'line',
+                name: `${item.variety}`
+            }
+            for (var i = 0; i < response.Vintages.length; i++){
+                trace.x.push(response.Vintages[i].Vintage)
+                trace.y.push(response.Vintages[i].Average)
+            }
+            traces.push(trace)
+        }
+        d3.json(`http://127.0.0.1:5000/vintages/${item.Variety}`).then(callApi)
+    }
+    if (!wineType){
+        d3.json(`http://127.0.0.1:5000/variety_count`).then(function(res){
+        res['Variety Count'].forEach(getVarities)})
+        var layout = {
+            title:'Top 15 Varieties',
+            xaxis: {range:[1990,2020],
+                    title: 'Year'},
+            yaxis: {range:[75,101],
+                    title: 'Average Rating'}
+            };
+        Plotly.newPlot('lineGraph', traces, layout);
+    }
+    else{
+        d3.json(`http://127.0.0.1:5000/variety/${wineType}`).then( function(res){
+            res['Variety'].slice(0,1).forEach(getVarities)})
+        var layout = {
+            title:`${wineType}`,
+            xaxis: {range:[1990,2020],
+                title: 'Year'},
+            yaxis: {range:[75,101],
+                title: 'Average Rating'}
+            };
+        Plotly.newPlot('lineGraph', traces, layout);
+
+    }
+}
+
 function updateVisualizations(wineType){
     map.panTo([40.8324, -115.7631]);
     function updateMap() {
@@ -153,10 +202,12 @@ function findSimilarWines(marker){
     d3.json(`http://127.0.0.1:5000/winery/${winery}`).then(callWines)
 }
 //select the carasoule, on change run updateVisualizations
+createGraph('')
 var button = d3.selectAll(".btn")
 button.on("click", function() {
     wineType = this.getElementsByClassName("title")[0].innerText
     updateVisualizations(wineType)
+    createGraph(wineType)
 });
 
 map.on('popupopen',findSimilarWines)

@@ -49,14 +49,17 @@ def variety_count():
     wine_list = []
     for items in wine_all:
         wine_dict = {}
-        wine_dict['variety']  = items[0]
+        wine_dict['Variety']  = items[0]
         wine_dict['variety_count'] = items[1]  
         wine_dict["winery_count"] = items[2]
         wine_dict["vintage_low"]    = items[3]
         wine_dict["vintage_high"]    = items[4]
         wine_list.append(wine_dict)
     session.close()
-    return (jsonify({'Variety Count': wine_list, 'Count': len(wine_list)}))
+
+    response = jsonify({'Variety Count': wine_list, 'Count': len(wine_list)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.route('/variety/<variety>')
@@ -130,7 +133,7 @@ def options1(variety,points,price):
 def tasters1(variety):
     session = Session(engine)
 
-    wines = engine.execute("select wine_final.taster_name, wine_final.title, wine_final.variety from wine_final where wine_final.taster_name is not NULL and wine_final.variety =\'"+variety+"\'").fetchall()
+    wines = engine.execute("select wine_final.taster_name, wine_final.title, wine_final.variety, wine_final.points from wine_final where wine_final.taster_name is not NULL and wine_final.variety =\'"+variety+"\'").fetchall()
 #    wines = engine.execute("select Wine.winery, Wine.title from Wine where Wine.winery =\'"Aaron"\'").fetchall()
     
     wine_list = []
@@ -139,13 +142,15 @@ def tasters1(variety):
         wine_dict['Taster'] = item[0]
         wine_dict['Title'] = item[1]
         wine_dict['Variety'] = item[2]
+        wine_dict['Rating'] = item[3]
 
         wine_list.append(wine_dict)
         
     #final_quotes_list = ['quotes': quotes_list]
     session.close()
-
-    return (jsonify({'Tasters': wine_list, 'Count': len(wine_list)}))
+    response = jsonify({'Tasters': wine_list, 'Count': len(wine_list)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/price/<price>')
 def price1(price):
@@ -197,7 +202,9 @@ def vintage1(vintage):
     #final_quotes_list = ['quotes': quotes_list]
     session.close()
 
-    return (jsonify({'Vintages': wine_list, 'Count': len(wine_list)}))
+    response = jsonify({'Vintages': wine_list, 'Count': len(wine_list)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/winery/<winery>')
 def winery1(winery):
@@ -222,6 +229,29 @@ def winery1(winery):
     #final_quotes_list = ['quotes': quotes_list]
     session.close()
     response = jsonify({'wineries': wine_list, 'count': len(wine_list)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+
+@app.route('/vintages/<variety>')
+def vintageVariety(variety):
+    session = Session(engine)
+
+    wines = engine.execute('''select wine_final.vintage,  cast(round(avg(points),0) as int) from wine_final where wine_final.vintage is not NULL and variety=\''''+variety + '\' GROUP BY wine_final.vintage  order by wine_final.vintage').fetchall()
+
+    wine_list = []
+    for item in wines:
+        wine_dict = {}
+        wine_dict['Vintage'] = item[0]
+        wine_dict['Average'] = item[1]
+
+
+
+        wine_list.append(wine_dict)
+        
+    session.close()
+    response = jsonify({'Vintages': wine_list, 'count': len(wine_list)})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
