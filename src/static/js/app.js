@@ -14,10 +14,10 @@
     accessToken: API_KEY
   }).addTo(map);
 
-function updateVisualizations(){
+function updateVisualizations(wineType){
+    map.panTo([40.8324, -115.7631]);
     function updateMap() {
         //On new wine selection, pan to orignal scene
-        map.panTo(new L.LatLng(40.8324, -115.7631));
         function callMap(response) {
             // Create a new marker cluster group
             var markers = L.markerClusterGroup();
@@ -31,23 +31,17 @@ function updateVisualizations(){
                 map.addLayer(markers);
             }
         }
-        var wineType = "Cabernet Sauvignon"
         //this url will be replaced with Heroku one
         d3.json(`http://127.0.0.1:5000/variety/${wineType}`).then(callMap)
     }
-    function updateVis3(){}
-    //Set this whole block to be onchange of html carasoulr selector div
-    // Store API query variables
-    //TODO: GET THIS FROM HTML input
-    // #carasouelSelct
     //Call functions
     updateMap()
-    //updateVis3()
 }
 
 function findSimilarWines(marker){
     var winery = marker.popup.options.className[0];
     function callWines(response){
+        /* Recomended wines, can remove not sure if needed/wanted
         list = '<ol>'
         if (response.count >= 4){
             topThree = response.wineries.slice(0,4)
@@ -59,20 +53,14 @@ function findSimilarWines(marker){
             list += '</ol>'
         }
         list = "<h1>Top 3 Wines From This Winery:</h1>" + list
-        //d3.select('#recommend').html(list)
-
+        d3.select('#recommend').html(list)
+        */
 
 
         //scatter of price vs rating for this winery, make the selected marker differnt color
+        ////////////////////////////////////////////////////////////////////////////////////
         d3.select('#otherWines').html('')
-        /*d3.select('#otherWines').html(`
-        <div class="h-100 p-5 bg-light border rounded-3">
-        <h2>Visulization 2</h2>
-        <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-        <button class="btn btn-outline-secondary" type="button">Example button</button>
-        <br>
-        </div>
-        `)*/
+
         data = response.wineries.map( item => [item.Rating, item.Price, item.Wine])
         var max = d3.max(data, function(array) {
             return d3.max(array);
@@ -113,7 +101,7 @@ function findSimilarWines(marker){
             .attr("x", -margin.top - height/2 + 20)
             .text("Price")
 
-        //Adding title
+        //Add title
         svg.append("text")
         .attr("x", (width / 2))             
         .attr("y", 0 - (margin.top/10))
@@ -164,7 +152,11 @@ function findSimilarWines(marker){
     //this url will be replaced with Heroku one
     d3.json(`http://127.0.0.1:5000/winery/${winery}`).then(callWines)
 }
-//select the carasoule, on change run updateMap
-//d3.select("#carasouelSelct").on("change", updateVisualizations);
-updateVisualizations()
+//select the carasoule, on change run updateVisualizations
+var button = d3.selectAll(".btn")
+button.on("click", function() {
+    wineType = this.getElementsByClassName("title")[0].innerText
+    updateVisualizations(wineType)
+});
+
 map.on('popupopen',findSimilarWines)
