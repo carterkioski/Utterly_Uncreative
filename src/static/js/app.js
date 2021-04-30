@@ -26,7 +26,7 @@ function createGraph(wineType){
                 y: [],
                 type: 'line',
                 mode: 'line',
-                name: `${item.variety}`
+                name: `${item.Variety}`
             }
             for (var i = 0; i < response.Vintages.length; i++){
                 trace.x.push(response.Vintages[i].Vintage)
