@@ -26,7 +26,7 @@ function updateVisualizations(){
                 // Set the data location property to a variable
                 item = response.Variety[i]
                 markers.addLayer(L.marker([item.Latitude, item.Longitude]).bindPopup(`<h2>${item.Wine}</h2><hr>` +
-                 `<p><b div='winery'>Winery:</b> ${item.Winery}</p>` + `<p><b>Address:</b> ${item.Address}</p>`, {className: item.Winery}))
+                 `<p><b div='winery'>Winery:</b> ${item.Winery}</p>` + `<p><b>Address:</b> ${item.Address}</p>`, {className: [item.Winery, item.Rating, item.Price]}))
                 // Add our marker cluster layer to the map
                 map.addLayer(markers);
             }
@@ -117,12 +117,30 @@ function findSimilarWines(marker){
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", function (d) { return y(d[0]); } )
+            .attr("cx", function (d) { return x(d[0]); } )
             .attr("cy", function (d) { return y(d[1]); } )
             .attr("r", 5)
-            .style("fill", "#69b3a2")
+            .style("fill", function(d){
+                if (d[0] === marker.popup.options.className[1] && d[1] === marker.popup.options.className[2]){
+                    return "#000000"
+                }
+                else{
+                    return "#69b3a2"
+                }})
+        /*svg.append('g')
+            .selectAll("dot")
+            .data([80,80])
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) { return x(d[0]); } )
+            .attr("cy", function (d) { return y(d[1]); } )
+            .attr("r", 5)
+            .style("fill", "#000000")
+            console.log(marker.popup.options.className.slice(1,3)[0])
+            console.log(marker.popup.options.className.slice(1,3)[1])
+            */
     }
-    var winery = marker.popup.options.className;
+    var winery = marker.popup.options.className[0];
     //this url will be replaced with Heroku one
     d3.json(`http://127.0.0.1:5000/winery/${winery}`).then(callWines)
 }
