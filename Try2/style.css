@@ -1,84 +1,80 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-.carousel-container {
-  width: 1280px;
-  margin: 50px auto;
-  min-height: 200px;
-  position: relative;
-}
-@media screen and (max-width: 768px) {
-  .carousel-container {
-    width: 80%;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .carousel-container {
-    width: 85%;
-  }
-}
-.carousel-container .carousel-inner {
-  overflow: hidden;
-}
-.carousel-container .track {
-  display: inline-flex;
-  transition: transform 0.5s;
-}
-.carousel-container .card-container {
-  width: 259px;
-  flex-shrink: 0;
-  height: 250px;
-  padding-right: 15px;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-.carousel-container .card-container .card {
-  width: 100%;
+html,body{
+  display: grid;
   height: 100%;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  border-radius: 10px;
+  place-items: center;
+  text-align: center;
+  /* background: #fff; */
+}
+.slider{
+  max-width: 1100px;
   display: flex;
-  flex-direction: column;
 }
-.nav button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 1px solid #aaa;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-.nav .prev {
-  left: -30px;
-  display: none;
-}
-.nav .prev.show {
-  display: block;
-}
-.nav .next {
-  right: -30px;
-}
-.nav .next.hide {
-  display: none;
-}
-
-.card > * {
+.slider .card{
   flex: 1;
+  margin: 0 10px;
+  background: #fff;
 }
-.card .img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
+.slider .card .img{
+  height: 200px;
+  width: 100%;
 }
-.card .info {
-  flex-basis: 40px;
-  background: #333;
+.slider .card .img img{
+  height: 90%;
+  width: 100%;
+  object-fit: contain;
+}
+.slider .card .content{
+  padding: 10px 20px;
+}
+.card .content .title{
+  font-size: 25px;
+  font-weight: 600;
+}
+.card .content .sub-title{
+  font-size: 20px;
+  font-weight: 600;
+  color: #e74c3c;
+  line-height: 20px;
+}
+.card .content p{
+  text-align: justify;
+  margin: 10px 0;
+}
+.card .content .btn{
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+}
+.card .content .btn button{
+  background: #ffa500;
   color: #fff;
-  flex-grow: 0;
-  padding: 10px;
-  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.card .content .btn button:hover{
+  transform: scale(0.9);
 }
 
+.title{
+  font-size: small;
+}
 
-
+body {
+  background-image: url("backgroud.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  
+ }

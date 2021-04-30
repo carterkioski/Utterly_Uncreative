@@ -1,251 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Utterly Uncreative</title>
-    <link rel="stylesheet" href="style.css" />
+<!-- Carousel Source: Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Owl-carousel Cards Slider | CodingNepal</title> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin="" />
+    <link rel="stylesheet" href="style.css">
 
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-  
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+      <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
         }
-      }
-    </style>
-    <style>
-      body {
-        background-image: url('SilverForkWinery.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-      }
-    </style>   
-  
-  </head>
-<body>
-
     
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+      
+
+  </head>
+  <body>
+    <div class="container py-12">
+      <header class="pb-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="60" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>-->
+          <span class="fs-1 fw-bold">The Utterly Uncreative </span> 
+          <span class = "fs-2"><br><br>by: Carter Kioski, Ed Ober, Claire Wong</span>
+          
+          </a>
+      </header>
+
+  <div class="container">
+    
+<!--Do we need an intro box?-->
+
+   <!-- <div class="col-md-12">
+      <div class="p-5 mb-4 bg-light jumbotron rounded-3">
+          <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Leaflet Map</h1>
+            <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>  -->
+            <!--<button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+      <!--  </div>
+        </div> -->
 
 
     <div class="container py-12">
-        <header class="pb-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-            <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="60" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>-->
-            <span class="fs-1 fw-bold">The Utterly Uncreative </span> 
-            <span class = "fs-2"><br><br>by: Carter Kioski, Ed Ober, Claire Wong</span>
-            
-            </a>
-        </header>
-
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12 jumbotron text-center" style="background-color:#CCCCFF">
-            <h1>Project Description Section</h1>
-            
-            </div>
+    <div class="slider owl-carousel align-items-center">
+      <div class="card">
+        <div class="img">
+          <img src="image/bordeaux.webp" alt="">
         </div>
-
-    <div class="col-md-12">
-    <div class="carousel-container">
-        <div class="carousel-inner">
-          <div class="track">
-            <div class="card-container">
-              <div class="card">
-                <div class="img" >1</div>
-                    <img class = "card-img-top" src="wine1.png">
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
+            <div class="content">
+              <div class="title">
+                Bordeaux-style Red Blend</div>
+                  <div class="btn">
+                    <button>Info</button>
                 </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">2</div>
-                <div class="info">
-                  Title 2 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">3</div>
-                <div class="info">
-                  Title 3 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">4</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">5</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">6</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">7</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">8</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-container">
-              <div class="card">
-                <div class="img">9</div>
-                <div class="info">
-                  Title 1 <br><br>
-                  <button type="button" class="btn btn-info">Info</button>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-        <div class="nav">
-          <button class="prev">
-            <i class="material-icons">
-            keyboard_arrow_left
-            </i>
-          </button>
-          <button class="next">
-            <i class="material-icons">
-            keyboard_arrow_right
-            </i>
-          </button>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/CabernetFranc.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Cabernet Franc</div> <br>
+                <div class="btn">
+                  <button>Info</button>
+            </div>
         </div>
       </div>
 
-      <div class="col-md-12">
-        <div class="p-5 mb-4 bg-light jumbotron rounded-3">
-            <div class="container-fluid py-5">
-              <h1 class="display-5 fw-bold">Leaflet Map</h1>
-              <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-              <!--<button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+      <div class="card">
+        <div class="img">
+          <img src="image/CabernetSauvignon.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Cabernet Sauvignon</div> <br>
+                <div class="btn">
+                  <button>Info</button>
             </div>
-          </div>
+        </div>
       </div>
 
-      <div id="map"></div> 
-
-      <div class="row align-items-md-stretch">
-        <div class="col-md-6">
-          <div class="h-100 p-5 text-white bg-dark rounded-3">
-            <h2>Visulization 1</h2>
-            <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-            <button class="btn btn-outline-light" type="button">Example button</button>
-          </div>
+      <div class="card">
+        <div class="img">
+          <img src="image/Chardonnay.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Chardonnay</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
         </div>
-        <div class="col-md-6">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Visulization 2</h2>
-            <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-            <button class="btn btn-outline-secondary" type="button">Example button</button>
-            <br>
-          </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/fume_blanc.png" alt=""></div>
+            <div class="content">
+              <div class="title">Fumé Blanc</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
         </div>
-      
-</body>
+      </div>
 
+      <div class="card">
+        <div class="img">
+          <img src="image/merlot16.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Merlot</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
 
-<script type="text/javascript" src="move.js"></script>
+      <div class="card">
+        <div class="img">
+          <img src="image/PetiteSirah.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Petite Sirah</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
 
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <div class="card">
+        <div class="img">
+          <img src="image/PinotNoir.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Pinot Noir</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
 
+      <div class="card">
+        <div class="img">
+          <img src="image/RedBlend.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Red Blend</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/rose.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Rosé"</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/SauvignonBlanc.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Sauvignon Blanc</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/SparklingBlend.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Sparkling Blend</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/Syrah.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Syrah</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/white_blend.webp" alt=""></div>
+            <div class="content">
+              <div class="title">White Blend</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="img">
+          <img src="image/zinfandel17.webp" alt=""></div>
+            <div class="content">
+              <div class="title">Zinfandel</div> <br> 
+                <div class="btn">
+                  <button>Info</button>
+            </div>
+        </div>
+      </div>
+</div>
+
+<div class="col-md-12">
+  <div class="p-5 mb-4 bg-light jumbotron rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Leaflet Map</h1>
+        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <!--<button class="btn btn-primary btn-lg" type="button">Example button</button> -->
+      </div>
+    </div>
+</div>
+
+<div id="map"></div> 
+
+<div class="row align-items-md-stretch">
+  <div class="col-md-6">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2>Visulization 1</h2>
+      <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+      <button class="btn btn-outline-light" type="button">Example button</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="h-100 p-5 bg-light border rounded-3">
+      <h2>Visulization 2</h2>
+      <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+      <button class="btn btn-outline-secondary" type="button">Example button</button>
+      <br>
+    </div>
+  </div>
+<script>
+      $(".slider").owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 1500, //1500ms = 1.5s;
+        autoplayHoverPause: false,
+      });
+    </script>
+
+  </body>
 </html>
+
