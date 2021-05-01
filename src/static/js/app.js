@@ -5,21 +5,20 @@
     layers: []
   });
 
-  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  var tile =  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
     id: "mapbox/streets-v11",
     accessToken: API_KEY
-  }).addTo(map);
+  })
 
 function createGraph(wineType){
+    tile.addTo(map);
     d3.select('#lineGraph').html('')
-    console.log(wineType)
     traces = []
     function getVarities(item) {
-        console.log(item)
         function callApi(response){
             trace = {
                 x: [],
@@ -44,6 +43,9 @@ function createGraph(wineType){
             width: 1000,
             height: 400,
             title:'Top 15 Varieties',
+            marker: {
+                color: '#23b7e5'
+            },
             xaxis: {range:[1990,2020],
                     title: 'Year'},
             yaxis: {range:[75,101],
@@ -59,6 +61,9 @@ function createGraph(wineType){
             width: 1000,
             height: 400,
             title:`${wineType}`,
+            marker: {
+                color: '#23b7e5'
+            },
             xaxis: {range:[1990,2020],
                 title: 'Year'},
             yaxis: {range:[75,101],
@@ -71,6 +76,7 @@ function createGraph(wineType){
 
 function updateVisualizations(wineType){
     map.panTo([40.8324, -115.7631]);
+    map.setZoom(5)
     function updateMap() {
         //On new wine selection, pan to orignal scene
         function callMap(response) {
@@ -80,7 +86,7 @@ function updateVisualizations(wineType){
             for (var i = 0; i < response.Variety.length; i++) {
                 // Set the data location property to a variable
                 item = response.Variety[i]
-                markers.addLayer(L.marker([item.Latitude, item.Longitude]).bindPopup(`<h2>${item.Wine}</h2><hr>` +
+                markers.addLayer(L.marker([item.Latitude, item.Longitude]).bindPopup(`<b>${item.Wine}</b><hr>` +
                  `<p><b div='winery'>Winery:</b> ${item.Winery}</p>` + `<p><b>Address:</b> ${item.Address}</p>`, {className: [item.Winery, item.Rating, item.Price]}))
                 // Add our marker cluster layer to the map
                 map.addLayer(markers);
@@ -211,6 +217,9 @@ function findSimilarWines(marker){
 createGraph('')
 var button = d3.selectAll(".btn")
 button.on("click", function() {
+    map.eachLayer(function(layer){
+        map.removeLayer(layer)
+    });
     wineType = this.getElementsByClassName("title")[0].innerText
     updateVisualizations(wineType)
     createGraph(wineType)
