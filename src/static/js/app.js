@@ -110,7 +110,7 @@ function findSimilarWines(marker){
         var max = d3.max(data, function(array) {
             return d3.max(array);
           });
-        var margin = {top: 50, right: 30, bottom: 30, left: 60},
+        var margin = {top: 50, right: 30, bottom: 50, left: 60},
             width = 460 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
         var svg =  d3.select('#otherWines')
@@ -129,8 +129,8 @@ function findSimilarWines(marker){
         // Add X axis label
         svg.append("text")
             .attr("text-anchor", "end")
-            .attr("x", width/2 + margin.left)
-            .attr("y", height + margin.top + 20)
+            .attr("x", width/2 + (margin.left/2))
+            .attr("y", height + margin.top -10)
             .text("Rating");
           // Add Y axis
         var y = d3.scaleLinear()
