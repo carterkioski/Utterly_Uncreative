@@ -3,7 +3,6 @@ from flask import Flask, jsonify,render_template
 import numpy as np
 import sqlalchemy
 import psycopg2
-from config import user, password
 from sqlalchemy import inspect, create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
