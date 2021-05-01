@@ -40,7 +40,7 @@ function createGraph(wineType){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 1000,
+            width: 700,
             height: 400,
             title:'Top 15 Varieties',
             marker: {
@@ -58,7 +58,7 @@ function createGraph(wineType){
             res['Variety'].slice(0,1).forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 1000,
+            width: 700,
             height: 400,
             title:`${wineType}`,
             marker: {
@@ -102,22 +102,6 @@ function updateVisualizations(wineType){
 function findSimilarWines(marker){
     var winery = marker.popup.options.className[0];
     function callWines(response){
-        /* Recomended wines, can remove not sure if needed/wanted
-        list = '<ol>'
-        if (response.count >= 4){
-            topThree = response.wineries.slice(0,4)
-            //then need to add this html into a certain div
-            list = `<li>${topThree[0].Wine}</li> <li>${topThree[1].Wine}</li> <li>${topThree[2].Wine}</li></ol>`
-        }
-        else{
-            response.wineries.forEach( i => list =+ `<li>${i.Wine}</li>`)
-            list += '</ol>'
-        }
-        list = "<h1>Top 3 Wines From This Winery:</h1>" + list
-        d3.select('#recommend').html(list)
-        */
-
-
         //scatter of price vs rating for this winery, make the selected marker differnt color
         ////////////////////////////////////////////////////////////////////////////////////
         d3.select('#otherWines').html('')
