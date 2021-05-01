@@ -1,5 +1,5 @@
 //"map" is name of div in index.html for the map
-  var map = L.map("map", {
+var map = L.map("map", {
     center: [35, -120.3594],
     zoom: 6,
     layers: []
@@ -69,7 +69,7 @@ function createGraph(wineType){
             yaxis: {range:[75,101],
                 title: 'Average Rating'}
             };
-        Plotly.newPlot('lineGraph', traces, layout);
+            Plotly.newPlot('lineGraph', traces, layout);
 
     }
 }
