@@ -106,10 +106,10 @@ html,body{
 
 body {
   background-image: url("backgroud.jpg");
-  background-repeat: no-repeat;
+  background-repeat: yes;
   background-size: 100% 150%; 
   
  }
  #otherWines{
-  background: #fff;
+  background: #F5EEF8;
  }
