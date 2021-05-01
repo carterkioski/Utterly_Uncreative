@@ -20,11 +20,11 @@ html,body{
 }
 
 #map_container{
-  height: 1000px ;
+  height: 80px ;
   }
 
 #map{
-    height: 800px ;
+    height: 600px ;
     }
 
 #line{
@@ -110,6 +110,6 @@ body {
   background-size: 100% 150%; 
   
  }
- #otherWines{
+ #otherWinesRow{
   background: #F5EEF8;
  }

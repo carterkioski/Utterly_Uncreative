@@ -1,7 +1,7 @@
 //"map" is name of div in index.html for the map
   var map = L.map("map", {
-    center: [40.8324, -115.7631],
-    zoom: 5,
+    center: [35, -120.3594],
+    zoom: 6,
     layers: []
   });
 
@@ -40,7 +40,7 @@ function createGraph(wineType){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 700,
+            width: 900,
             height: 400,
             title:'Top 15 Varieties',
             marker: {
@@ -58,7 +58,7 @@ function createGraph(wineType){
             res['Variety'].slice(0,1).forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 700,
+            width: 900,
             height: 400,
             title:`${wineType}`,
             marker: {
@@ -75,8 +75,8 @@ function createGraph(wineType){
 }
 
 function updateVisualizations(wineType){
-    map.panTo([40.8324, -115.7631]);
-    map.setZoom(5)
+    map.panTo([35, -120.3594]);
+    map.setZoom(6)
     function updateMap() {
         //On new wine selection, pan to orignal scene
         function callMap(response) {
@@ -155,13 +155,14 @@ function findSimilarWines(marker){
         .text(`${winery}`);
         
         //setting d3 selection for div to add wine info on hover
-        var tooltip = d3.select("#otherWines")
+        var tooltip = d3.select("#otherWinesPlot")
         .append("div")
         .style("opacity", 1)
+        //.style("background", "#F5EEF8")
         .attr("class", "tooltip")
         var mouseover = function(d) {
             tooltip 
-                .html(`<p><b>Wine:</b> ${d[2]} <br>
+                .html(`<br><br><p><b>Wine:</b> ${d[2]} <br><hr>
                        <b>Price:</b>  $${d[1]}<br>
                        <b>Rating:</b>  ${d[0]}/100</p>`)
                 .style("opacity", 1)
