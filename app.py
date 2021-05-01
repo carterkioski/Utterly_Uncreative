@@ -8,8 +8,9 @@ from sqlalchemy import inspect, create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import text
+url = 'postgres://agpxrzptoxfvtk:b4e79dc5ea085040de95ce5efe55daa811f89ff9c9641ab4c319238bd48a9ec3@ec2-23-22-191-232.compute-1.amazonaws.com:5432/d2opbeubs14rv8'
 
-engine = create_engine(f'postgresql://{user}:{password}@localhost:5432/Wine_DB') 
+engine = create_engine(url) 
 connection = engine.connect()
 #Reflect an existing database and tables
 Base = automap_base()

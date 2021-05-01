@@ -1,4 +1,4 @@
-drop table wine_final;
+--drop table wine_final;
 CREATE TABLE wine_final (
     id int   NOT NULL,
     country text, 
