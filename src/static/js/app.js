@@ -1,5 +1,5 @@
 //"map" is name of div in index.html for the map
-var map = L.map("map", {
+  var map = L.map("map", {
     center: [35, -120.3594],
     zoom: 6,
     layers: []
@@ -40,7 +40,7 @@ function createGraph(wineType){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 900,
+            width: 920,
             height: 400,
             title:'Top 15 Varieties',
             marker: {
@@ -69,7 +69,7 @@ function createGraph(wineType){
             yaxis: {range:[75,101],
                 title: 'Average Rating'}
             };
-            Plotly.newPlot('lineGraph', traces, layout);
+        Plotly.newPlot('lineGraph', traces, layout);
 
     }
 }

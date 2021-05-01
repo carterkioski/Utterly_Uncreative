@@ -104,12 +104,6 @@ html,body{
   font-weight: 600; 
 }
 
-body {
-  background-image: url("backgroud.jpg");
-  background-repeat: yes;
-  background-size: 100% 150%; 
-  
- }
  #otherWinesRow{
   background: #F5EEF8;
  }
