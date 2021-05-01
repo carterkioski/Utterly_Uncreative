@@ -4,7 +4,6 @@
     zoom: 6,
     layers: []
   });
-
   var tile =  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -15,7 +14,6 @@
   })
 
 function createGraph(wineType){
-    tile.addTo(map);
     d3.select('#lineGraph').html('')
     traces = []
     function getVarities(item) {
@@ -23,8 +21,7 @@ function createGraph(wineType){
             trace = {
                 x: [],
                 y: [],
-                type: 'line',
-                mode: 'line',
+                mode: "line",
                 name: `${item.Variety}`
             }
             for (var i = 0; i < response.Vintages.length; i++){
@@ -40,7 +37,7 @@ function createGraph(wineType){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
             autosize: false,
-            width: 920,
+            width: 900,
             height: 400,
             title:'Top 15 Varieties',
             marker: {
@@ -110,7 +107,7 @@ function findSimilarWines(marker){
         var max = d3.max(data, function(array) {
             return d3.max(array);
           });
-        var margin = {top: 50, right: 30, bottom: 50, left: 60},
+        var margin = {top: 50, right: 60, bottom: 50, left: 60},
             width = 460 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
         var svg =  d3.select('#otherWines')
