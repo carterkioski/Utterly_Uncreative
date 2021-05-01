@@ -13,41 +13,21 @@
 html,body{
   display: grid;
   height: 100%;
-  width: 100%;
   place-items: center;
   text-align: center;
   /* background: #fff; */
 }
-
-#map_container{
-  height: 1000px ;
-  }
-
-#map{
-    height: 800px ;
-    }
-
-#line{
-    height: 400px ;
-    }
-
-#other{
-      height: 400px ;
-      }
-
-
 .slider{
   max-width: 1100px;
   display: flex;
 }
-
 .slider .card{
   flex: 1;
   margin: 0 10px;
   background: #fff;
 }
 .slider .card .img{
-  height: 150px;  /* EO was 200px */
+  height: 200px;
   width: 100%;
 }
 .slider .card .img img{
@@ -59,7 +39,7 @@ html,body{
   padding: 10px 20px;
 }
 .card .content .title{
-  font-size: 20px;   /* was 25px */
+  font-size: 25px;
   font-weight: 600;
 }
 .card .content .sub-title{
@@ -99,7 +79,7 @@ html,body{
 body {
   background-image: url("backgroud.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 150%; 
+  background-size: 100% 150%;
   
  }
  #otherWines{

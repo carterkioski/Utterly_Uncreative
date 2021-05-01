@@ -40,9 +40,6 @@ function createGraph(wineType){
         d3.json(`http://127.0.0.1:5000/variety_count`).then(function(res){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
-            autosize: false,
-            width: 1000,
-            height: 400,
             title:'Top 15 Varieties',
             xaxis: {range:[1990,2020],
                     title: 'Year'},
@@ -55,9 +52,6 @@ function createGraph(wineType){
         d3.json(`http://127.0.0.1:5000/variety/${wineType}`).then( function(res){
             res['Variety'].slice(0,1).forEach(getVarities)})
         var layout = {
-            autosize: false,
-            width: 1000,
-            height: 400,
             title:`${wineType}`,
             xaxis: {range:[1990,2020],
                 title: 'Year'},
