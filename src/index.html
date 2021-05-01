@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- Carousel Source: Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+    <!-- <title>Owl-carousel Cards Slider | CodingNepal</title> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+    <link rel="stylesheet" href="./css/style.css">
+
+      <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+    
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+      
+
+  </head>
+  <body>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
+  <!-- Marker Cluster CSS -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+    <div class="container py-12">
+      <header class="pb-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <!--<svg xmlns="http://www.w3.org/2000/svg" width="40" height="60" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>-->
+          <span class="fs-1 fw-bold">The Utterly Uncreative </span> 
+          <span class = "fs-2"><br><br>by: Carter Kioski, Ed Ober, Claire Wong</span>
+          
+          </a>
+      </header>
+     </div> 
+  <div class="container-fluid">
+    
+    <div class="container py-12">
+    <div class="slider owl-carousel align-items-center">
+      <div class="card btn">
+        <div class="img">
+          <img src="image/bordeaux.webp" alt="">
+          <div class="title">Bordeaux-style Red Blend</div>
+          </div>
+          </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/CabernetFranc.webp" alt=""></div>
+          <div class="title">Cabernet Franc</div>   
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/CabernetSauvignon.webp" alt=""></div>
+          <div class="title">Cabernet Sauvignon</div>
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/Chardonnay.webp" alt=""></div>
+          <div class="title">Chardonnay</div> 
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/fume_blanc.png" alt=""></div>
+          <div class="title">Fumé Blanc</div>  
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/merlot16.webp" alt=""></div>
+          <div class="title">Merlot</div> 
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/PetiteSirah.webp" alt=""></div>
+          <div class="title">Petite Sirah</div> 
+      </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/PinotNoir.webp" alt=""></div>
+          <div class="title">Pinot Noir</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/RedBlend.webp" alt=""></div>
+          <div class="title">Red Blend</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/rose.webp" alt=""></div>
+          <div class="title">Rosé</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/SauvignonBlanc.webp" alt=""></div>
+          <div class="title">Sauvignon Blanc</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/SparklingBlend.webp" alt=""></div>
+          <div class="title">Sparkling Blend</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/Syrah.webp" alt=""></div>
+          <div class="title">Syrah</div>
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/white_blend.webp" alt=""></div>
+          <div class="title">White Blend</div> 
+        </div>
+
+      <div class="card btn">
+        <div class="img">
+          <img src="image/zinfandel17.webp" alt=""></div>
+          <div class="title">Zinfandel</div>
+        </div>
+</div>
+</div>
+
+<div class="container-fluid content">
+  <div class="row">
+      <div class="col-lg-4 col-md-12">
+              <div class="card" id='map'>
+                
+          </div>
+      </div>
+      <!--visualizations container -->
+      <div class="col-md-8">
+          <div class="col-md-12">
+              <div class="card">
+              <div class="row">
+                  <div class="col-6 col-md-12">
+                    <div id='lineGraph'> </div>
+                  </div>
+                </div>
+                <div class="row" id='otherWinesRow'>
+                  <div class="col-3 col-md-6">
+                    <div id='otherWines'> </div>
+                  </div><div class="col-3 col-md-6">
+                    <div id='otherWinesPlot'> </div>
+                  </div></div>
+              </div>
+              </div>
+          </div>
+          </div>  
+      </div>          
+ 
+
+<script>
+      $(".slider").owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        autoplayTimeout: 1500, //1500ms = 1.5s;
+        items: 7
+
+      });
+    </script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- Marker Cluster JS -->
+    <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="./static/js/config.js"></script>
+    <script type="text/javascript" src="./static/js/app.js"></script>
+  </body>
+</html>
