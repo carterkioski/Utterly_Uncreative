@@ -2,6 +2,7 @@
   var map = L.map("map", {
     center: [35, -120.3594],
     zoom: 6,
+    maxZoom: 18,
     layers: []
   });
   var tile =  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -12,7 +13,7 @@
     id: "mapbox/streets-v11",
     accessToken: API_KEY
   })
-
+tile.addTo(map)
 function createGraph(wineType){
     d3.select('#lineGraph').html('')
     traces = []
@@ -30,10 +31,10 @@ function createGraph(wineType){
             }
             traces.push(trace)
         }
-        d3.json(`http://127.0.0.1:5000/vintages/${item.Variety}`).then(callApi)
+        d3.json(`/vintages/${item.Variety}`).then(callApi)
     }
     if (!wineType){
-        d3.json(`http://127.0.0.1:5000/variety_count`).then(function(res){
+        d3.json(`/variety_count`).then(function(res){
         res['Variety Count'].forEach(getVarities)})
         var layout = {
             autosize: false,
@@ -48,10 +49,11 @@ function createGraph(wineType){
             yaxis: {range:[75,101],
                     title: 'Average Rating'}
             };
+
         Plotly.newPlot('lineGraph', traces, layout);
     }
     else{
-        d3.json(`http://127.0.0.1:5000/variety/${wineType}`).then( function(res){
+        d3.json(`/variety/${wineType}`).then( function(res){
             res['Variety'].slice(0,1).forEach(getVarities)})
         var layout = {
             autosize: false,
@@ -72,6 +74,7 @@ function createGraph(wineType){
 }
 
 function updateVisualizations(wineType){
+    tile.addTo(map)
     map.panTo([35, -120.3594]);
     map.setZoom(6)
     function updateMap() {
@@ -90,7 +93,7 @@ function updateVisualizations(wineType){
             }
         }
         //this url will be replaced with Heroku one
-        d3.json(`http://127.0.0.1:5000/variety/${wineType}`).then(callMap)
+        d3.json(`/variety/${wineType}`).then(callMap)
     }
     //Call functions
     updateMap()
@@ -193,7 +196,7 @@ function findSimilarWines(marker){
 
     }
     //this url will be replaced with Heroku one
-    d3.json(`http://127.0.0.1:5000/winery/${winery}`).then(callWines)
+    d3.json(`/winery/${winery}`).then(callWines)
 }
 //select the carasoule, on change run updateVisualizations
 createGraph('')
